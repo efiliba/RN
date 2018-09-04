@@ -11,7 +11,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>08fc045e-acb9-4e07-800d-b84b3770025d</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>app.js</StartupFile>
+    <StartupFile>
+    </StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -29,8 +30,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.css.js" />
-    <Compile Include="app.js" />
     <Compile Include="index.js" />
+    <Compile Include="App.js" />
     <Compile Include="src\components\Details\Details.css.js" />
     <Compile Include="src\components\Details\Details.js" />
     <Compile Include="src\components\Heading\Heading.css.js" />
@@ -40,6 +41,57 @@
     <Compile Include="src\components\SelectableItems\SelectableItems.js" />
     <Compile Include="src\components\Tile\Tile.css.js" />
     <Compile Include="src\components\Tile\Tile.js" />
+    <Compile Include="src\Services\Data\Api\Base\BaseActions.js" />
+    <Compile Include="src\Services\Data\Api\Base\BaseApi.js" />
+    <Compile Include="src\Services\Data\Api\Base\BaseReducer.js" />
+    <Compile Include="src\Services\Data\Api\Base\FetchApi.js" />
+    <Compile Include="src\Services\Data\Api\Compare\CompareActions.js" />
+    <Compile Include="src\Services\Data\Api\Compare\CompareApi.js" />
+    <Compile Include="src\Services\Data\Api\Compare\CompareHelper.js" />
+    <Compile Include="src\Services\Data\Api\Compare\CompareReducer.js" />
+    <Compile Include="src\Services\Data\Api\Content\ContentActions.js" />
+    <Compile Include="src\Services\Data\Api\Content\ContentApi.js" />
+    <Compile Include="src\Services\Data\Api\Content\ContentReducer.js" />
+    <Compile Include="src\Services\Data\Api\Loading\PageActions.js" />
+    <Compile Include="src\Services\Data\Api\Loading\PageApi.js" />
+    <Compile Include="src\Services\Data\Api\Loading\PageHelper.js" />
+    <Compile Include="src\Services\Data\Api\Member\MemberActions.js" />
+    <Compile Include="src\Services\Data\Api\Member\MemberApi.js" />
+    <Compile Include="src\Services\Data\Api\Member\MemberHelper.js" />
+    <Compile Include="src\Services\Data\Api\Member\MemberReducer.js" />
+    <Compile Include="src\Services\Data\Api\Member\MemberService.js" />
+    <Compile Include="src\Services\Data\Api\Member\VerifyMemberModelMapper.js" />
+    <Compile Include="src\Services\Data\Api\System\SystemActions.js" />
+    <Compile Include="src\Services\Data\Api\System\SystemApi.js" />
+    <Compile Include="src\Services\Data\Api\System\SystemReducer.js" />
+    <Compile Include="src\Services\Data\Models\ActionDefinition.js" />
+    <Compile Include="src\Services\Data\Models\RenderStatus.js" />
+    <Compile Include="src\Services\Data\Models\StateDictionaryKeys.js" />
+    <Compile Include="src\Services\Data\Models\StateProperty.js" />
+    <Compile Include="src\Services\Data\Models\StatePropertyDictionary.js" />
+    <Compile Include="src\reducers.js" />
+    <Compile Include="src\Services\Utility\AppData.js" />
+    <Compile Include="src\Services\Utility\ArrayUtil.js" />
+    <Compile Include="src\Services\Utility\AuthHelper.js" />
+    <Compile Include="src\Services\Utility\BadWords.js" />
+    <Compile Include="src\Services\Utility\CompareUtil.js" />
+    <Compile Include="src\Services\Utility\DateUtil.js" />
+    <Compile Include="src\Services\Utility\FetchHelper.js" />
+    <Compile Include="src\Services\Utility\Filters.js" />
+    <Compile Include="src\Services\Utility\GoogleAnalyticsHelper.js" />
+    <Compile Include="src\Services\Utility\LocalStorageUtil.js" />
+    <Compile Include="src\Services\Utility\Logger.js" />
+    <Compile Include="src\Services\Utility\NotificationHelper.js" />
+    <Compile Include="src\Services\Utility\ProductPreferenceUtil.js" />
+    <Compile Include="src\Services\Utility\QuestionnaireArray.js" />
+    <Compile Include="src\Services\Utility\ScoreInfoUtil.js" />
+    <Compile Include="src\Services\Utility\ScrollHelper.js" />
+    <Compile Include="src\Services\Utility\SocialSharing.js" />
+    <Compile Include="src\Services\Utility\StringUtil.js" />
+    <Compile Include="src\Services\Utility\Util.js" />
+    <Compile Include="src\Services\Validation\NotificationService.js" />
+    <Compile Include="src\Services\Validation\ValidationRules.js" />
+    <Compile Include="store.js" />
     <Content Include=".babelrc" />
     <Content Include=".buckconfig" />
     <Content Include=".flowconfig" />
@@ -1166,6 +1218,7 @@
     <Content Include="android\keystores\debug.keystore.properties" />
     <Content Include="android\settings.gradle" />
     <Content Include="app.json" />
+    <Content Include="gradle.properties" />
     <Content Include="image1.jpg" />
     <Content Include="ios\savvy-tvOSTests\Info.plist" />
     <Content Include="ios\savvy-tvOS\Info.plist" />
@@ -1181,12 +1234,14 @@
     <Content Include="ios\savvy\Images.xcassets\Contents.json" />
     <Content Include="ios\savvy\Info.plist" />
     <Content Include="ios\savvy\main.m" />
+    <Content Include="package-lock.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="src\img\image1.jpeg" />
     <Content Include="src\img\image2.png" />
     <Content Include="src\img\image3.jpeg" />
     <Content Include="src\img\image4.png" />
+    <Content Include="yarn.lock" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="android\" />
@@ -1647,6 +1702,20 @@
     <Folder Include="src\components\SelectableItems\" />
     <Folder Include="src\components\Tile\" />
     <Folder Include="src\img\" />
+    <Folder Include="src\Services\" />
+    <Folder Include="src\Services\Constants\" />
+    <Folder Include="src\Services\Data\" />
+    <Folder Include="src\Services\Data\Api\" />
+    <Folder Include="src\Services\Data\Api\Base\" />
+    <Folder Include="src\Services\Data\Api\Compare\" />
+    <Folder Include="src\Services\Data\Api\Content\" />
+    <Folder Include="src\Services\Data\Api\Loading\" />
+    <Folder Include="src\Services\Data\Api\Member\" />
+    <Folder Include="src\Services\Data\Api\System\" />
+    <Folder Include="src\Services\Data\Code\" />
+    <Folder Include="src\Services\Data\Models\" />
+    <Folder Include="src\Services\Utility\" />
+    <Folder Include="src\Services\Validation\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />

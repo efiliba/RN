@@ -1,9 +1,5 @@
-﻿import AppData from "Services/Utility/AppData";
-import { Util } from "Services/Utility/Util";
+﻿import AppData from "../../../Utility/AppData";
 import { FetchApi } from "./FetchApi";
-import { push } from "react-router-redux";
-import { RouteUrls } from "../../../Constants/RouteUrls";
-import { MemberService } from "../Member/MemberService";
 import { Logger } from "../../../Utility/Logger";
 
 export class BaseApi extends FetchApi {
@@ -44,14 +40,12 @@ export class BaseApi extends FetchApi {
         this.dispatch({ type: actionDefinition.getRequestActionType(), actionDefinition: actionDefinition, payload: null });
     }
 
-    _handleUnauthorizedRequest() {
-        const service = new MemberService();
-        //service.logout();
-        this.dispatch(push(RouteUrls.getLoginUrl()));
+    _handleUnauthorizedRequest() {        
+        console.error("_handleUnauthorizedRequest");        
     }
 
     _handlePageNotFoundRequest() {
-        this.dispatch(push(RouteUrls.pageNotFound));
+        console.error("_handlePageNotFoundRequest");    
     }
 
     _processPromise(responsePromise, actionDefinition, successHandler, errorHandler) {

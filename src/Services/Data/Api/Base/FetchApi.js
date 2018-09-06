@@ -1,6 +1,4 @@
-﻿import { LocalStorageUtil } from "Services/Utility/LocalStorageUtil";
-
-export class FetchApi {
+﻿export class FetchApi {
 
     sendGetRequest(url) {
         return this._sendDataRequest("GET", url);
@@ -44,14 +42,6 @@ export class FetchApi {
         fetchOptions.headers.append("Content-Type", "application/json");
     }
 
-    _addTokenHeader(headers) {
-        const token = LocalStorageUtil.getToken();
-
-        if (token) {
-            headers.append("Authorization", `Bearer ${token.tokenCode}`);
-        }
-    }
-
     _sendRequest(url, fetchOptions) {
         if (!fetchOptions) {
             fetchOptions = {};
@@ -59,7 +49,7 @@ export class FetchApi {
 
         this._addHeaders(fetchOptions);
 
-        return fetch(url, fetchOptions);
+        return fetch(`https://test.creditsavvy.com.au/${url}`, fetchOptions);
     }
 
 }

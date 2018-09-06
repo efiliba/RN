@@ -1,17 +1,16 @@
-import { combineReducers } from "redux";
+import {combineReducers} from "redux";
 import MemberReducer from "./Services/Data/Api/Member/MemberReducer";
 import ContentReducer from "./Services/Data/Api/Content/ContentReducer";
 import CompareReducer from "./Services/Data/Api/Compare/CompareReducer";
-import { SystemReducer } from "./Services/Data/Api/System/SystemReducer";
-import { StateProperty } from "./Services/Data/Models/StateProperty";
+import {SystemReducer} from "./Services/Data/Api/System/SystemReducer";
+import {StateProperty} from "./Services/Data/Models/StateProperty";
 
 // Combine Reducers
 const reducers = combineReducers({
     member: MemberReducer,
     compare: CompareReducer,
     content: ContentReducer,
-    system: SystemReducer.getState,
-   
+    system: SystemReducer.getState
 });
 
 export const rootReducer = (state, action) => {

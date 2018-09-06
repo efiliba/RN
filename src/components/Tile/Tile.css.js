@@ -7,6 +7,8 @@ export const styles = StyleSheet.create({
   },
   image: {
     alignSelf: 'center',
+    width: 350,
+    height: 210
   },
   title: {
     marginTop: 10,

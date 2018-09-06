@@ -1,44 +1,68 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import { Platform, View, Text, Button } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import { styles, navigationOptions } from './App.css';
 import { SelectableItems, Tile, Details, Heading } from './src/components';
+import { ContentApi } from "./src/Services/Data/Api/Content/ContentApi";
+
+const MAX_CREDIT_SCORE_ARTICLES = 7;
 
 const platform = Platform.select({
     ios: 'Running on IOS',
     android: 'Running on Android'
 });
 
-const data = [{
-    img: require("./src/img/image1.jpeg"),
-    title: "Credit score 101 for uni students",
-    date: "14 August 2018"
-}, {
-    img: require("./src/img/image2.png"),
-    title: "Not so obvious reasons to monitor your credit score",
-    date: "08 August 2018"
-}, {
-    img: require("./src/img/image3.jpeg"),
-    title: "What are Bad Credit Car Loans?",
-    date: "19 July 2018"
-}, {
-    img: require("./src/img/image4.png"),
-    title: "What you should know about mobile phone plans",
-    date: "13 July 2018"
-}];
 
-const handleNavigateTo = navigation => item => {
-    navigation.navigate('Details', {item});
+class HomeComponent extends React.PureComponent {
+    constructor(props) {
+        super(props);
+
+        this.handleNavigateTo = this.handleNavigateTo.bind(this);
+    }
+
+    componentWillMount() {
+        this.props.loadCreditScoreArticles();
+    }
+
+    handleNavigateTo(item) {
+        this.props.navigation.navigate('Details', {item});
+    };
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <Text style={styles.instructions}>{platform}</Text>
+                <SelectableItems
+                    Heading={Heading}
+                    stateProperty={this.props.creditScoreArticles}
+                    onItemSelected={this.handleNavigateTo}
+                >
+                    <Tile />
+                </SelectableItems>
+            </View>
+        );
+    }
+}
+
+const mapStateToProps = state => ({
+    creditScoreArticles: state.content.creditScoreArticles
+});
+
+const mapDispatchToProps = () => {                                  // dispatch used internally
+    const api = new ContentApi();
+
+    // https://test.creditsavvy.com.au/api/article/GetArticlesByTag?tagSlug=curated-learn-lead-carousel
+
+    // const slug = "curated-learn-lead-carousel";
+    // api.getArticlesByTag(slug, () => console.log("callback"));
+
+    return {
+        loadCreditScoreArticles: () => api.getCreditScoreArticles(MAX_CREDIT_SCORE_ARTICLES)
+    };
 };
 
-const HomeScreen = ({navigation}) =>
-    <View style={styles.container}>
-        <Text style={styles.welcome}>React Native! 4</Text>
-        <Text style={styles.instructions}>{platform}</Text>
-        <SelectableItems items={data} onItemSelected={handleNavigateTo(navigation)} Heading={Heading}>
-            <Tile />
-        </SelectableItems>
-    </View>;
+const HomeScreen = connect(mapStateToProps, mapDispatchToProps)(HomeComponent);
 
 HomeScreen.navigationOptions = ({navigation}) => ({
     title: 'Home',

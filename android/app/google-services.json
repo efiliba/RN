@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "293302393780",
+    "firebase_url": "https://credit-savvy-push.firebaseio.com",
+    "project_id": "credit-savvy-push",
+    "storage_bucket": "credit-savvy-push.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:293302393780:android:2d18e0121d9bfc39",
+        "android_client_info": {
+          "package_name": "com.savvy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "293302393780-qnais18jfi3aa2gorqqol34csr57effs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsH3A3ZBH6aAL72VxU5sj7jvqYK4Knk20"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -16,3 +16,13 @@ const ReduxApp = props =>
   </Provider>
 
 AppRegistry.registerComponent(appName, () => ReduxApp);
+
+const bgMessaging = async message => {
+  // handle your message
+  debugger;
+
+  return Promise.resolve();                                         // Must resolve within 60 seconds.
+};
+
+// New task registration
+AppRegistry.registerHeadlessTask('RNFirebaseBackgroundMessage', () => bgMessaging);

@@ -3,7 +3,6 @@ import {View, Image, Text} from 'react-native';
 import {styles} from './Tile.css';
 
 export const Tile = props => {
-  console.log("Tile created");
   const {ThumbImageUrl: uri, Title: title, EffectiveFrom: date} = props;
   return (
     <View style={styles.container}>

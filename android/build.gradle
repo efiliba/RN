@@ -6,9 +6,11 @@ buildscript {
         google()
         jcenter()
         maven {
-            // url 'https://maven.google.com/'
-            // name 'Google'
-            url "$rootDir/../node_modules/react-native/android"
+          url "$rootDir/../node_modules/react-native/android"
+        }
+        maven {
+          url 'https://maven.google.com/'
+          name 'Google'
         }
     }
     dependencies {

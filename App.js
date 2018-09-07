@@ -5,18 +5,28 @@ import {createStackNavigator} from 'react-navigation';
 import {styles, navigationOptions} from './App.css';
 import {SelectableItems, Tile, Details, Heading} from './src/components';
 import {ContentApi} from './src/Services/Data/Api/Content/ContentApi';
-import firebase from 'react-native-firebase';
+import RNFirebase from 'react-native-firebase';
 
 const MAX_CREDIT_SCORE_ARTICLES = 7;
 
+const firebaseConfig = {
+  // debug: true,
+  // promptOnMissingPlayServices: true,
+  apiKey: "AIzaSyD4zTgP0YEX2oVk7FxX2K4iVqZAQavA5aM",
+  authDomain: "simply-notify-c05df.firebaseapp.com",
+  databaseURL: "https://simply-notify-c05df.firebaseio.com",
+  projectId: "simply-notify-c05df",
+  storageBucket: "simply-notify-c05df.appspot.com",
+  messagingSenderId: "964652296440"
+};
+
+// firebase.initializeApp(firebaseConfig);
+const firebase = RNFirebase.initializeApp(firebaseConfig);
+
+const tokensDbTable = firebase.database().ref("/tokens");
 const messaging = firebase.messaging();
 
-// const configurationOptions = {
-//   debug: true,
-//   promptOnMissingPlayServices: true
-// };
 
-// const firebase = RNFirebase.initializeApp(configurationOptions);
 
 
 
@@ -65,6 +75,11 @@ class HomeComponent extends React.PureComponent {
 
       const token = await messaging.getToken();
       console.log(token);
+debugger;
+      return await tokensDbTable.push({                             // Save token on application server
+        token,
+        uid: "anon"
+      });
     } catch(error) {
       debugger;
       console.log(error);

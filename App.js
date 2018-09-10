@@ -49,6 +49,7 @@ class HomeComponent extends React.PureComponent {
     this.messageUnsubscribe = messaging.onMessage(message => {
       debugger;
       console.log("Message received", message);
+      alert("Message received" + message);
     });
 
     this.refreshUnsubscribe = messaging.onTokenRefresh(token => {
@@ -74,7 +75,7 @@ class HomeComponent extends React.PureComponent {
 
       // await messaging.requestPermission();
 
-      const token = await messaging.getToken(); 
+      const token = await messaging.getToken();
       console.log(token);
 // debugger;
 

@@ -1,38 +1,32 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import {Platform, View, Text, Button} from 'react-native';
+import {connect} from 'react-redux';
 import {createStackNavigator} from 'react-navigation';
+import firebase from 'react-native-firebase';
 import {styles, navigationOptions} from './App.css';
 import {SelectableItems, Tile, Details, Heading} from './src/components';
 import {ContentApi} from './src/Services/Data/Api/Content/ContentApi';
-import RNFirebase from 'react-native-firebase';
 
 const MAX_CREDIT_SCORE_ARTICLES = 7;
 
 const firebaseConfig = {
   // debug: true,
   // promptOnMissingPlayServices: true,
-  apiKey: "AIzaSyD4zTgP0YEX2oVk7FxX2K4iVqZAQavA5aM",
-  authDomain: "simply-notify-c05df.firebaseapp.com",
-  databaseURL: "https://simply-notify-c05df.firebaseio.com",
-  projectId: "simply-notify-c05df",
-  storageBucket: "simply-notify-c05df.appspot.com",
-  messagingSenderId: "964652296440"
+  clientId: "293302393780-qnais18jfi3aa2gorqqol34csr57effs.apps.googleusercontent.com",
+  appId: "1:293302393780:android:2d18e0121d9bfc39",
+  apiKey: "AIzaSyByHV0eWowrY9qB479FuHjj3YR5xCJ4gxg",
+  authDomain: "credit-savvy-push.firebaseapp.com",
+  databaseURL: "https://credit-savvy-push.firebaseio.com",
+  projectId: "credit-savvy-push",
+  storageBucket: "credit-savvy-push.appspot.com",
+  messagingSenderId: "293302393780"
 };
 
-// firebase.initializeApp(firebaseConfig);
-const firebase = RNFirebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
+// const firebase = RNFirebase.initializeApp(firebaseConfig);
 
 const tokensDbTable = firebase.database().ref("/tokens");
 const messaging = firebase.messaging();
-
-
-
-
-
-// firebase.messaging().onTokenRefresh(token => {
-//   onChangeToken(token);
-// });
 
 const platform = Platform.select({
   ios: 'Running on IOS',
@@ -51,15 +45,22 @@ class HomeComponent extends React.PureComponent {
     this.props.loadCreditScoreArticles();
   }
 
-  componentDidMount() {
-    this.messageListener = messaging.onMessage(message => {
+  componentWillMount() {
+    this.messageUnsubscribe = messaging.onMessage(message => {
       debugger;
-      console.log(message);
+      console.log("Message received", message);
+    });
+
+    this.refreshUnsubscribe = messaging.onTokenRefresh(token => {
+      debugger;
+      console.log("Refresh token called", token);
+      // onChangeToken(token);
     });
   }
 
   componentWillUnmount() {
-    this.messageListener();
+    this.messageUnsubscribe();
+    this.refreshUnsubscribe();
   }
 
   handleNavigateTo(item) {
@@ -73,9 +74,16 @@ class HomeComponent extends React.PureComponent {
 
       // await messaging.requestPermission();
 
-      const token = await messaging.getToken();
+      const token = await messaging.getToken(); 
       console.log(token);
-debugger;
+// debugger;
+
+      // return await tokensDbTable.once("value")
+      //   .then(data => {
+      //       const tokens = Object.keys(data.val());
+      //       console.log(tokens);
+      //   });
+
       return await tokensDbTable.push({                             // Save token on application server
         token,
         uid: "anon"

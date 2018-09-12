@@ -22,7 +22,7 @@ const firebaseConfig = {
   messagingSenderId: "293302393780"
 };
 
-firebase.initializeApp(firebaseConfig);
+// firebase.initializeApp(firebaseConfig);
 // const firebase = RNFirebase.initializeApp(firebaseConfig);
 
 const tokensDbTable = firebase.database().ref("/tokens");
@@ -45,14 +45,15 @@ class HomeComponent extends React.PureComponent {
     this.props.loadCreditScoreArticles();
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.messageUnsubscribe = messaging.onMessage(message => {
-      debugger;
-      console.log("Message received", message);
-      alert("Message received" + message);
+      // debugger;
+      console.log("Message received", message.data);
+      alert("Message received" + message.data);
     });
 
     this.refreshUnsubscribe = messaging.onTokenRefresh(token => {
+      alert("Token refreshing");
       debugger;
       console.log("Refresh token called", token);
       // onChangeToken(token);
@@ -79,19 +80,12 @@ class HomeComponent extends React.PureComponent {
       console.log(token);
 // debugger;
 
-      // return await tokensDbTable.once("value")
-      //   .then(data => {
-      //       const tokens = Object.keys(data.val());
-      //       console.log(tokens);
-      //   });
-
       return await tokensDbTable.push({                             // Save token on application server
         token,
         uid: "anon"
       });
     } catch(error) {
-      debugger;
-      console.log(error);
+      alert(error);
     }
   }
 

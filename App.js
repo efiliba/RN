@@ -9,22 +9,6 @@ import {ContentApi} from './src/Services/Data/Api/Content/ContentApi';
 
 const MAX_CREDIT_SCORE_ARTICLES = 7;
 
-const firebaseConfig = {
-  // debug: true,
-  // promptOnMissingPlayServices: true,
-  clientId: "293302393780-qnais18jfi3aa2gorqqol34csr57effs.apps.googleusercontent.com",
-  appId: "1:293302393780:android:2d18e0121d9bfc39",
-  apiKey: "AIzaSyByHV0eWowrY9qB479FuHjj3YR5xCJ4gxg",
-  authDomain: "credit-savvy-push.firebaseapp.com",
-  databaseURL: "https://credit-savvy-push.firebaseio.com",
-  projectId: "credit-savvy-push",
-  storageBucket: "credit-savvy-push.appspot.com",
-  messagingSenderId: "293302393780"
-};
-
-// firebase.initializeApp(firebaseConfig);
-// const firebase = RNFirebase.initializeApp(firebaseConfig);
-
 const tokensDbTable = firebase.database().ref("/tokens");
 const messaging = firebase.messaging();
 
